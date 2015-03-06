@@ -21,7 +21,7 @@ class Auth0Controller extends AbstractActionController
 
     public function callbackAction()
     {
-        $auth0User = $this->auth0Service->getUserInfo();
+        $auth0User = $this->auth0Service->getUser();
         if (!$auth0User) {
             return $this->redirect()->toRoute('zfcuser/login');
         }
