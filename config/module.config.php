@@ -13,4 +13,44 @@ return [
             'Riskio\Auth0Module\Service\Auth0Service' => 'Riskio\Auth0Module\Factory\Auth0ServiceFactory',
         ],
     ],
+
+    'controllers' => [
+        'factories' => [
+            'Riskio\Auth0Module\Controller\Auth0' => 'Riskio\Auth0Module\Factory\Auth0ControllerFactory',
+        ],
+    ],
+    
+    'router' => [
+        'routes' => [
+            'auth0' => [
+                'type'    => 'Literal',
+                'priority' => 1000,
+                'options' => [
+                    'route'    => '/auth0',
+                    'defaults' => [
+                        '__NAMESPACE__' => 'Riskio\Auth0Module\Controller',
+                        'controller'    => 'Index',
+                        'action'        => 'index',
+                    ],
+                    'constraints' => [
+                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'callback' => [
+                        'type'    => 'Literal',
+                        'options' => [
+                            'route'    => '/callback',
+                            'defaults' => [
+                                'controller' => 'auth0',
+                                'action'     => 'callback',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
