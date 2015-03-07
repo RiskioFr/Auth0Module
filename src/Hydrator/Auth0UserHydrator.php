@@ -16,7 +16,12 @@ class Auth0UserHydrator extends BaseHydrator
         parent::hydrate($data, $object);
 
         if (isset($data['user_id'])) {
-            $object->setId($data['user_id']);
+            $userId = $data['user_id'];
+            if (preg_match('/^([a-z\d\-]*)\|([\d]*)$/i', $userId, $match)) {
+                $userId = $match[2];
+            }
+
+            $object->setId($userId);
         }
         if (isset($data['access_token'])) {
             $object->setToken($data['access_token']);
