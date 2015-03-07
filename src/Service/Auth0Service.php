@@ -21,11 +21,15 @@ class Auth0Service
     }
 
     /**
-     * @return Auth0UserEntity
+     * @return Auth0UserEntity|null
      */
     public function getUser()
     {
         $userInfo = $this->sdk->getUserInfo();
+        if (!$userInfo) {
+            return null;
+        }
+
         $hydrator = new Auth0UserHydrator();
 
         return $hydrator->hydrate($userInfo, new Auth0UserEntity());
