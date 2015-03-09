@@ -28,6 +28,21 @@ class Auth0Options extends AbstractOptions
     /**
      * @var bool
      */
+    protected $persistUserInfo;
+
+    /**
+     * @var bool
+     */
+    protected $persistAccessToken;
+
+    /**
+     * @var bool
+     */
+    protected $persistIdToken;
+
+    /**
+     * @var bool
+     */
     protected $store;
 
     /**
@@ -99,6 +114,60 @@ class Auth0Options extends AbstractOptions
     public function setRedirectUri($uri)
     {
         $this->redirectUri = $uri;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPersistUserInfo()
+    {
+        return $this->persistUserInfo;
+    }
+
+    /**
+     * @param  bool $persist
+     * @return self
+     */
+    public function setPersistUserInfo($persist)
+    {
+        $this->persistUserInfo = (bool) $persist;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPersistAccessToken()
+    {
+        return $this->persistAccessToken;
+    }
+
+    /**
+     * @param  bool $persist
+     * @return self
+     */
+    public function setPersistAccessToken($persist)
+    {
+        $this->persistAccessToken = (bool) $persist;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPersistIdToken()
+    {
+        return $this->persistIdToken;
+    }
+
+    /**
+     * @param  bool $persist
+     * @return self
+     */
+    public function setPersistIdToken($persist)
+    {
+        $this->persistIdToken = (bool) $persist;
         return $this;
     }
 

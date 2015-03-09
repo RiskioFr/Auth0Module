@@ -5,6 +5,9 @@ return [
         'client_id'     => null,
         'client_secret' => null,
         'redirect_uri'  => null,
+        'persist_user_info'    => true,
+        'persist_access_token' => false,
+        'persist_id_token'     => false,
     ],
 
     'service_manager' => [
