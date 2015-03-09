@@ -7,21 +7,23 @@ class Auth0SdkFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateInstance()
     {
-        $config = [
-            'auth0' => [
-                'domain'        => 'foo.auth0.com',
-                'client_id'     => 'id',
-                'client_secret' => 'secret',
-                'redirect_uri'  => 'http://localhost/callback.php',
-                'store'         => false,
-            ],
+        $options = [
+            'domain'        => 'foo.auth0.com',
+            'client_id'     => 'id',
+            'client_secret' => 'secret',
+            'redirect_uri'  => 'http://localhost/callback.php',
+            'store'         => false,
         ];
+        $auth0OptionsStub = $this->getMock('Riskio\Auth0Module\Options\Auth0Options');
+        $auth0OptionsStub
+            ->method('toArray')
+            ->will($this->returnValue($options));
 
         $serviceManagerStub = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $serviceManagerStub
             ->method('get')
-            ->with('Config')
-            ->will($this->returnValue($config));
+            ->with('Riskio\Auth0Module\Options\Auth0Options')
+            ->will($this->returnValue($auth0OptionsStub));
 
         $factory = new Auth0SdkFactory();
 
