@@ -41,7 +41,7 @@ class Auth0Options extends AbstractOptions
     protected $persistIdToken;
 
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $store;
 
@@ -172,7 +172,7 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
     public function getStore()
     {
@@ -180,12 +180,17 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
-     * @param  bool $store
+     * @param  bool|null $store
      * @return self
      */
     public function setStore($store)
     {
-        $this->store = (bool) $store;
+        if (null !== $store) {
+            $this->store = (bool) $store;
+        } else {
+            $this->store = null;
+        }
+
         return $this;
     }
 }
