@@ -12,7 +12,7 @@ return [
 
     'service_manager' => [
         'initializers' => [
-            'auth0_client' => 'Riskio\Auth0Module\Client\Auth0ClientInitializer',
+            'auth0_client' => 'Riskio\Auth0Module\Client\Auth0ClientAwareInitializer',
         ],
         'invokables' => [
             'Riskio\Auth0Module\Service\ConnectionService' => 'Riskio\Auth0Module\Service\ConnectionService',
