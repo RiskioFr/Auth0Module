@@ -13,6 +13,11 @@ class Auth0Options extends AbstractOptions
     /**
      * @var string
      */
+    protected $idToken;
+
+    /**
+     * @var string
+     */
     protected $clientId;
 
     /**
@@ -61,6 +66,24 @@ class Auth0Options extends AbstractOptions
     public function getDomain()
     {
         return $this->domain;
+    }
+
+    /**
+     * @param  string $token
+     * @return self
+     */
+    public function setIdToken($token)
+    {
+        $this->idToken = $token;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdToken()
+    {
+        return $this->idToken;
     }
 
     /**

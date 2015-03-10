@@ -15,6 +15,14 @@ class Auth0SdkFactory implements FactoryInterface
     {
         $options = $serviceLocator->get('Riskio\Auth0Module\Options\Auth0Options');
 
-        return new Auth0($options->toArray());
+        $params = $options->toArray();
+
+        $auth0 = new Auth0($params);
+
+        if (!empty($params['id_token'])) {
+            $auth0->setIdToken($params['id_token']);
+        }
+
+        return $auth0;
     }
 }
