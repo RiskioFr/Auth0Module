@@ -52,27 +52,18 @@ class Auth0Client
     }
 
     /**
-     * @param  string $userId
-     * @return array
-     */
-    public function getUser($userId)
-    {
-        $response = $this->sendRequest('get', 'users/' . $userId);
-
-        return $response->json();
-    }
-
-    /**
      * @param  string $method
      * @param  string $uri
      * @param  array $params
-     * @return \GuzzleHttp\Message\ResponseInterface
+     * @return array
      */
-    private function sendRequest($method, $uri, array $params = [])
+    public function sendRequest($method, $uri, array $params = [])
     {
         $httpClient = $this->getHttpClient();
         $request = $httpClient->createRequest($method, $uri, $params);
 
-        return $httpClient->send($request);
+        $response = $httpClient->send($request);
+
+        return $response->json();
     }
 }

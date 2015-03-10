@@ -11,6 +11,12 @@ return [
     ],
 
     'service_manager' => [
+        'initializers' => [
+            'auth0_client' => 'Riskio\Auth0Module\Client\Auth0ClientInitializer',
+        ],
+        'invokables' => [
+            'Riskio\Auth0Module\Service\UserService' => 'Riskio\Auth0Module\Service\UserService',
+        ],
         'factories' => [
             'Riskio\Auth0Module\Auth0Sdk'             => 'Riskio\Auth0Module\Factory\Auth0SdkFactory',
             'Riskio\Auth0Module\Client\Auth0Client'   => 'Riskio\Auth0Module\Factory\Auth0ClientFactory',
