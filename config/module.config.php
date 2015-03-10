@@ -13,6 +13,7 @@ return [
     'service_manager' => [
         'factories' => [
             'Riskio\Auth0Module\Auth0Sdk'             => 'Riskio\Auth0Module\Factory\Auth0SdkFactory',
+            'Riskio\Auth0Module\Client\Auth0Client'   => 'Riskio\Auth0Module\Factory\Auth0ClientFactory',
             'Riskio\Auth0Module\Options\Auth0Options' => 'Riskio\Auth0Module\Factory\Auth0OptionsFactory',
             'Riskio\Auth0Module\Service\Auth0Service' => 'Riskio\Auth0Module\Factory\Auth0ServiceFactory',
         ],
