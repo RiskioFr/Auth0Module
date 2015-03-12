@@ -1,13 +1,11 @@
 <?php
 return [
     'auth0' => [
-        'domain'        => null,
+        'account'       => null,
+        'token'         => null,
         'client_id'     => null,
         'client_secret' => null,
         'redirect_uri'  => null,
-        'persist_user_info'    => true,
-        'persist_access_token' => false,
-        'persist_id_token'     => false,
     ],
 
     'service_manager' => [
@@ -20,10 +18,12 @@ return [
             'Riskio\Auth0Module\Service\StatsService'      => 'Riskio\Auth0Module\Service\StatsService',
         ],
         'factories' => [
-            'Riskio\Auth0Module\Auth0Sdk'             => 'Riskio\Auth0Module\Factory\Auth0SdkFactory',
-            'Riskio\Auth0Module\Client\Auth0Client'   => 'Riskio\Auth0Module\Factory\Auth0ClientFactory',
-            'Riskio\Auth0Module\Options\Auth0Options' => 'Riskio\Auth0Module\Factory\Auth0OptionsFactory',
-            'Riskio\Auth0Module\Service\Auth0Service' => 'Riskio\Auth0Module\Factory\Auth0ServiceFactory',
+            'Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter'  => 'Riskio\Auth0Module\Factory\Auth0AuthenticationAdapterFactory',
+            'Riskio\Auth0Module\Authentication\AuthenticationService' => 'Riskio\Auth0Module\Factory\AuthenticationServiceFactory',
+            'Riskio\Auth0Module\Client\Auth0Client'     => 'Riskio\Auth0Module\Factory\Auth0ClientFactory',
+            'Riskio\Auth0Module\OAuth2\Client\Provider' => 'Riskio\Auth0Module\Factory\OAuthProviderFactory',
+            'Riskio\Auth0Module\Options\Auth0Options'   => 'Riskio\Auth0Module\Factory\Auth0OptionsFactory',
+            'Riskio\Auth0Module\Service\Auth0Service'   => 'Riskio\Auth0Module\Factory\Auth0ServiceFactory',
         ],
     ],
 

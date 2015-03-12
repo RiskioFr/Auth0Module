@@ -15,8 +15,9 @@ class Auth0ControllerFactory implements FactoryInterface
     {
         $serviceManager = $serviceLocator->getServiceLocator();
 
-        $auth0Service = $serviceManager->get('Riskio\Auth0Module\Service\Auth0Service');
+        $authService = $serviceManager->get('Riskio\Auth0Module\Authentication\AuthenticationService');
+        $authAdapter = $serviceManager->get('Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter');
 
-        return new Auth0Controller($auth0Service);
+        return new Auth0Controller($authService, $authAdapter);
     }
 }

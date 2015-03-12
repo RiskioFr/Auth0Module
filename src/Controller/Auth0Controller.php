@@ -1,29 +1,44 @@
 <?php
 namespace Riskio\Auth0Module\Controller;
 
-use Riskio\Auth0Module\Service\Auth0Service;
+use Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter;
+use Zend\Authentication\AuthenticationService;
 use Zend\Mvc\Controller\AbstractActionController;
 
 class Auth0Controller extends AbstractActionController
 {
     /**
-     * @var Auth0Service
+     * @var AuthenticationService
      */
-    protected $auth0Service;
+    protected $authService;
 
     /**
-     * @param Auth0Service $auth0Service
+     * @var Auth0Adapter
      */
-    public function __construct(Auth0Service $auth0Service)
+    protected $authAdapter;
+
+    /**
+     * @param AuthenticationService $authService
+     * @param Auth0Adapter $authAdapter
+     */
+    public function __construct(AuthenticationService $authService, Auth0Adapter $authAdapter)
     {
-        $this->auth0Service = $auth0Service;
+        $this->authService = $authService;
+        $this->authAdapter = $authAdapter;
     }
 
     public function callbackAction()
     {
-        $auth0User = $this->auth0Service->getUser();
-        if (!$auth0User) {
-            return $this->redirect()->toRoute('zfcuser/login');
+        $code = $this->request->getQuery('code', null);
+        if (null === $code) {
+            return $this->redirect()->toRoute('user/login');
+        }
+
+        $this->authAdapter->setCode($code);
+
+        $auth = $this->authService->authenticate($this->authAdapter);
+        if (!$auth->isValid()) {
+            return $this->redirect()->toRoute('user/login');
         }
 
         return $this->redirect()->toRoute('app');

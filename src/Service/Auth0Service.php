@@ -1,42 +1,34 @@
 <?php
 namespace Riskio\Auth0Module\Service;
 
-use Auth0SDK\Auth0 as Auth0Sdk;
-use Riskio\Auth0Module\Entity\Auth0UserEntity;
-use Riskio\Auth0Module\Hydrator\Auth0UserHydrator;
+use League\OAuth2\Client\Entity\User as UserEntity;
+use Zend\Authentication\AuthenticationServiceInterface;
 
 class Auth0Service extends AbstractService
 {
     /**
-     * @var Auth0Sdk
+     * @var AuthenticationServiceInterface
      */
-    protected $sdk;
+    protected $authService;
 
     /**
-     * @param Auth0Sdk $sdk
+     * @param AuthenticationServiceInterface $authService
      */
-    public function __construct(Auth0Sdk $sdk)
+    public function __construct(AuthenticationServiceInterface $authService)
     {
-        $this->sdk = $sdk;
+        $this->authService = $authService;
     }
 
     /**
-     * @return Auth0UserEntity|null
+     * @return UserEntity|null
      */
     public function getUser()
     {
-        $userInfo = $this->sdk->getUserInfo();
-        if (!$userInfo) {
-            return null;
-        }
-
-        $hydrator = new Auth0UserHydrator();
-
-        return $hydrator->hydrate($userInfo, new Auth0UserEntity());
+        return $this->authService->getIdentity();
     }
 
     public function logout()
     {
-        $this->sdk->logout();
+        $this->authService->clearIdentity();
     }
 }

@@ -5,17 +5,15 @@ use Riskio\Auth0Module\Factory\Auth0ClientFactory;
 
 class Auth0ClientFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateInstance()
+    public function testCreateAuth0ClientInstance()
     {
-        $auth0SdkDummy = $this->getMockBuilder('Auth0SDK\Auth0')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $optionsDummy = $this->getMock('Riskio\Auth0Module\Options\Auth0Options');
 
         $serviceManagerStub = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $serviceManagerStub
             ->method('get')
-            ->with('Riskio\Auth0Module\Auth0Sdk')
-            ->will($this->returnValue($auth0SdkDummy));
+            ->with('Riskio\Auth0Module\Options\Auth0Options')
+            ->will($this->returnValue($optionsDummy));
 
         $factory = new Auth0ClientFactory();
 

@@ -1,18 +1,18 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
-use Riskio\Auth0Module\Factory\Auth0ServiceFactory;
+use Riskio\Auth0Module\Factory\AuthenticationServiceFactory;
 
-class Auth0ServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class AuthenticationServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateInstance()
     {
-        $authServiceDummy = $this->getMockBuilder('Zend\Authentication\AuthenticationServiceInterface')
+        $authAdapterDummy = $this->getMockBuilder('Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter')
             ->disableOriginalConstructor()
             ->getMock();
 
         $returnValueMap = [
-            ['Riskio\Auth0Module\Authentication\AuthenticationService', $authServiceDummy],
+            ['Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter', $authAdapterDummy],
         ];
 
         $serviceManagerStub = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
@@ -20,9 +20,9 @@ class Auth0ServiceFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnValueMap($returnValueMap));
 
-        $factory = new Auth0ServiceFactory();
+        $factory = new AuthenticationServiceFactory();
 
         $service = $factory->createService($serviceManagerStub);
-        $this->assertInstanceOf('Riskio\Auth0Module\Service\Auth0Service', $service);
+        $this->assertInstanceOf('Zend\Authentication\AuthenticationService', $service);
     }
 }

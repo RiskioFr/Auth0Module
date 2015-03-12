@@ -8,12 +8,12 @@ class Auth0Options extends AbstractOptions
     /**
      * @var string
      */
-    protected $domain;
+    protected $account;
 
     /**
      * @var string
      */
-    protected $idToken;
+    protected $token;
 
     /**
      * @var string
@@ -31,59 +31,51 @@ class Auth0Options extends AbstractOptions
     protected $redirectUri;
 
     /**
-     * @var bool
-     */
-    protected $persistUserInfo;
-
-    /**
-     * @var bool
-     */
-    protected $persistAccessToken;
-
-    /**
-     * @var bool
-     */
-    protected $persistIdToken;
-
-    /**
-     * @var bool|null
-     */
-    protected $store;
-
-    /**
-     * @param  string $domain
+     * @param  string $account
      * @return self
      */
-    public function setDomain($domain)
+    public function setAccount($account)
     {
-        $this->domain = $domain;
+        $this->account = $account;
         return $this;
     }
 
     /**
      * @return string
      */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getDomain()
     {
-        return $this->domain;
+        if (empty($this->account)) {
+            return null;
+        }
+
+        return $this->account . '.auth0.com';
     }
 
     /**
      * @param  string $token
      * @return self
      */
-    public function setIdToken($token)
+    public function setToken($token)
     {
-        $this->idToken = $token;
+        $this->token = $token;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getIdToken()
+    public function getToken()
     {
-        return $this->idToken;
+        return $this->token;
     }
 
     /**
@@ -137,83 +129,6 @@ class Auth0Options extends AbstractOptions
     public function setRedirectUri($uri)
     {
         $this->redirectUri = $uri;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getPersistUserInfo()
-    {
-        return $this->persistUserInfo;
-    }
-
-    /**
-     * @param  bool $persist
-     * @return self
-     */
-    public function setPersistUserInfo($persist)
-    {
-        $this->persistUserInfo = (bool) $persist;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getPersistAccessToken()
-    {
-        return $this->persistAccessToken;
-    }
-
-    /**
-     * @param  bool $persist
-     * @return self
-     */
-    public function setPersistAccessToken($persist)
-    {
-        $this->persistAccessToken = (bool) $persist;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getPersistIdToken()
-    {
-        return $this->persistIdToken;
-    }
-
-    /**
-     * @param  bool $persist
-     * @return self
-     */
-    public function setPersistIdToken($persist)
-    {
-        $this->persistIdToken = (bool) $persist;
-        return $this;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getStore()
-    {
-        return $this->store;
-    }
-
-    /**
-     * @param  bool|null $store
-     * @return self
-     */
-    public function setStore($store)
-    {
-        if (null !== $store) {
-            $this->store = (bool) $store;
-        } else {
-            $this->store = null;
-        }
-
         return $this;
     }
 }

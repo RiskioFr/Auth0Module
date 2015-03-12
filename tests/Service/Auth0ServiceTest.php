@@ -5,35 +5,33 @@ use Riskio\Auth0Module\Service\Auth0Service;
 
 class Auth0ServiceTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetUserReturnAuth0UserEntity()
+    public function testGetUserReturnAuth0UserEntityInstance()
     {
-        $userInfo = ['user_id' => 123];
+        $userDummy = $this->getMock('League\OAuth2\Client\Entity\User');
 
-        $auth0SdkStub = $this->getMockBuilder('Auth0SDK\Auth0')
+        $authServiceStub = $this->getMockBuilder('Zend\Authentication\AuthenticationServiceInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        $auth0SdkStub
-            ->method('getUserInfo')
-            ->will($this->returnValue($userInfo));
+        $authServiceStub
+            ->method('getIdentity')
+            ->will($this->returnValue($userDummy));
 
-        $auth0Service = new Auth0Service($auth0SdkStub);
+        $auth0Service = new Auth0Service($authServiceStub);
 
-        $entity = $auth0Service->getUser();
-        $this->assertInstanceOf('Riskio\Auth0Module\Entity\Auth0UserEntity', $entity);
+        $user = $auth0Service->getUser();
+        $this->assertInstanceOf('League\OAuth2\Client\Entity\User', $user);
     }
 
-    public function testGetUserWhenUserInfoIsEmptyReturnNull()
+    public function testLogoutShouldClearIdentity()
     {
-        $auth0SdkStub = $this->getMockBuilder('Auth0SDK\Auth0')
+        $authServiceStub = $this->getMockBuilder('Zend\Authentication\AuthenticationServiceInterface')
             ->disableOriginalConstructor()
             ->getMock();
-        $auth0SdkStub
-            ->method('getUserInfo')
-            ->will($this->returnValue(null));
+        $authServiceStub
+            ->expects($this->once())
+            ->method('clearIdentity');
 
-        $auth0Service = new Auth0Service($auth0SdkStub);
-
-        $entity = $auth0Service->getUser();
-        $this->assertNull($entity);
+        $auth0Service = new Auth0Service($authServiceStub);
+        $auth0Service->logout();
     }
 }
