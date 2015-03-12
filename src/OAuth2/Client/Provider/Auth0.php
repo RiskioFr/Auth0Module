@@ -13,8 +13,6 @@ class Auth0 extends AbstractProvider
 
     public $account;
 
-    public $apiDomain = 'https://login.auth0.com';
-
     protected function domain()
     {
         if (empty($this->account)) {
@@ -36,7 +34,7 @@ class Auth0 extends AbstractProvider
 
     public function urlUserDetails(AccessToken $token)
     {
-        return $this->apiDomain . '/api/v2/users';
+        return $this->domain() . '/user_info';
     }
 
     public function userDetails($response, AccessToken $token)
