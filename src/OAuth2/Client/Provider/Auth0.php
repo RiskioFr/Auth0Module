@@ -34,7 +34,7 @@ class Auth0 extends AbstractProvider
 
     public function urlUserDetails(AccessToken $token)
     {
-        return $this->domain() . '/user_info';
+        return $this->domain() . '/userinfo';
     }
 
     public function userDetails($response, AccessToken $token)

@@ -7,15 +7,23 @@ class Auth0ControllerFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreateInstance()
     {
-        $auth0ServiceDummy = $this->getMockBuilder('Riskio\Auth0Module\Service\Auth0Service')
+        $authServiceDummy = $this->getMockBuilder('Zend\Authentication\AuthenticationService')
             ->disableOriginalConstructor()
             ->getMock();
+
+        $authAdapterDummy = $this->getMockBuilder('Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $returnValueMap = [
+            ['Riskio\Auth0Module\Authentication\AuthenticationService', $authServiceDummy],
+            ['Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter', $authAdapterDummy],
+        ];
 
         $serviceManagerStub = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $serviceManagerStub
             ->method('get')
-            ->with('Riskio\Auth0Module\Service\Auth0Service')
-            ->will($this->returnValue($auth0ServiceDummy));
+            ->will($this->returnValueMap($returnValueMap));
 
         $pluginManagerStub = $this->getMock('Zend\ServiceManager\AbstractPluginManager');
         $pluginManagerStub

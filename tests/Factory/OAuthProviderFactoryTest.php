@@ -1,18 +1,17 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
-use Riskio\Auth0Module\Factory\Auth0SdkFactory;
+use Riskio\Auth0Module\Factory\OAuthProviderFactory;
 
-class Auth0SdkFactoryTest extends \PHPUnit_Framework_TestCase
+class OAuth0ProviderFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateInstance()
+    public function testCreateOAuthClientProviderInstance()
     {
         $options = [
-            'domain'        => 'foo.auth0.com',
+            'account'       => 'foo',
             'client_id'     => 'id',
             'client_secret' => 'secret',
             'redirect_uri'  => 'http://localhost/callback.php',
-            'store'         => false,
         ];
         $auth0OptionsStub = $this->getMock('Riskio\Auth0Module\Options\Auth0Options');
         $auth0OptionsStub
@@ -25,9 +24,9 @@ class Auth0SdkFactoryTest extends \PHPUnit_Framework_TestCase
             ->with('Riskio\Auth0Module\Options\Auth0Options')
             ->will($this->returnValue($auth0OptionsStub));
 
-        $factory = new Auth0SdkFactory();
+        $factory = new OAuthProviderFactory();
 
         $service = $factory->createService($serviceManagerStub);
-        $this->assertInstanceOf('Auth0SDK\Auth0', $service);
+        $this->assertInstanceOf('League\OAuth2\Client\Provider\ProviderInterface', $service);
     }
 }

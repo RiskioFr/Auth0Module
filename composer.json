@@ -22,18 +22,17 @@
     ],
     "require": {
         "php": ">=5.4",
-        "auth0/auth0-php": "~0.6",
-        "adoy/oauth2": "dev-master",
         "league/oauth2-client": "~0.10",
         "guzzlehttp/guzzle": "~5.2"
     },
     "require-dev": {
-        "mockery/mockery": "~0.9",
         "phpunit/phpunit": "~4.5",
+        "zendframework/zend-authentication": "~2.3",
         "zendframework/zend-filter": "~2.3",
         "zendframework/zend-http": "~2.3",
         "zendframework/zend-mvc": "~2.3",
         "zendframework/zend-servicemanager": "~2.3",
+        "zendframework/zend-session": "~2.3",
         "zendframework/zend-stdlib": "~2.3"
     },
     "autoload": {

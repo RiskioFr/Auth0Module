@@ -1,27 +1,27 @@
 <?php
 namespace Riskio\Auth0Module\Client;
 
-use Auth0SDK\Auth0;
 use GuzzleHttp\Client as HttpClient;
+use Riskio\Auth0Module\Options\Auth0Options;
 
 class Auth0Client
 {
     /**
-     * @var Auth0
+     * @var Auth0Options
      */
-    protected $auth0Sdk;
+    protected $options;
 
     /**
      * @var HttpClient
      */
-    protected $client;
+    protected $httpClient;
 
     /**
-     * @param Auth0 $sdk
+     * @param Auth0Options $options
      */
-    public function __construct(Auth0 $sdk)
+    public function __construct(Auth0Options $options)
     {
-        $this->auth0Sdk = $sdk;
+        $this->options = $options;
     }
 
     /**
@@ -30,10 +30,10 @@ class Auth0Client
     public function setHttpClient(HttpClient $client)
     {
         $client->setDefaultOption('headers', [
-            'Authorization' => 'Bearer ' . $this->auth0Sdk->getIdToken(),
+            'Authorization' => 'Bearer ' . $this->options->getToken(),
         ]);
 
-        $this->client = $client;
+        $this->httpClient = $client;
     }
 
     /**
@@ -41,14 +41,14 @@ class Auth0Client
      */
     public function getHttpClient()
     {
-        if (!$this->client) {
+        if (!$this->httpClient) {
             $httpClient = new HttpClient([
                 'base_url' => 'https://login.auth0.com/api/v2/',
             ]);
             $this->setHttpClient($httpClient);
         }
 
-        return $this->client;
+        return $this->httpClient;
     }
 
     /**
