@@ -1,7 +1,7 @@
 <?php
 namespace Riskio\Auth0Module\Factory;
 
-use Riskio\Auth0Module\OAuth2\Client\Provider\Auth0 as OAuthProvider;
+use Riskio\OAuth2\Client\Provider\Auth0 as OAuthProvider;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

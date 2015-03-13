@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": ">=5.4",
-        "league/oauth2-client": "~0.10",
+        "riskio/oauth2-auth0": "~0.1",
         "guzzlehttp/guzzle": "~5.2"
     },
     "require-dev": {
