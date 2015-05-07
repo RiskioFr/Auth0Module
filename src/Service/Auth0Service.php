@@ -4,7 +4,7 @@ namespace Riskio\Auth0Module\Service;
 use League\OAuth2\Client\Entity\User as UserEntity;
 use Zend\Authentication\AuthenticationServiceInterface;
 
-class Auth0Service extends AbstractService
+class Auth0Service
 {
     /**
      * @var AuthenticationServiceInterface
