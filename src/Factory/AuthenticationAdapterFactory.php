@@ -5,11 +5,11 @@ use Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Auth0AuthenticationAdapterFactory implements FactoryInterface
+class AuthenticationAdapterFactory implements FactoryInterface
 {
     /**
      * @param  ServiceLocatorInterface $serviceLocator
-     * @return Auth0Service
+     * @return Auth0Adapter
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

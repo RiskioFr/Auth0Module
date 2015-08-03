@@ -2,16 +2,21 @@
 namespace Riskio\Auth0ModuleTest\Factory;
 
 use Riskio\Auth0Module\Factory\Auth0OptionsFactory;
+use Riskio\Auth0Module\Options\Auth0Options;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class Auth0OptionsFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCreateInstance()
+    /**
+     * @test
+     */
+    public function createService_GivenServiceManagerThatContainsService_ShouldReturnAuth0OptionsInstance()
     {
         $config = [
             'auth0' => [],
         ];
 
-        $serviceManagerStub = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $serviceManagerStub = $this->getMock(ServiceLocatorInterface::class);
         $serviceManagerStub
             ->method('get')
             ->with('Config')
@@ -20,6 +25,7 @@ class Auth0OptionsFactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new Auth0OptionsFactory();
 
         $service = $factory->createService($serviceManagerStub);
-        $this->assertInstanceOf('Riskio\Auth0Module\Options\Auth0Options', $service);
+
+        $this->assertInstanceOf(Auth0Options::class, $service);
     }
 }
