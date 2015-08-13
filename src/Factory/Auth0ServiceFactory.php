@@ -13,7 +13,7 @@ class Auth0ServiceFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $authService = $serviceLocator->get('Riskio\Auth0Module\Authentication\AuthenticationService');
+        $authService = $serviceLocator->get('Riskio\AuthenticationModule\AuthenticationService');
 
         return new Auth0Service($authService);
     }

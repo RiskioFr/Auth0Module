@@ -16,7 +16,7 @@ class Auth0ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $authServiceDummy = $this->getMock(AuthenticationServiceInterface::class);
 
         $returnValueMap = [
-            ['Riskio\Auth0Module\Authentication\AuthenticationService', $authServiceDummy],
+            ['Riskio\AuthenticationModule\AuthenticationService', $authServiceDummy],
         ];
 
         $serviceManagerStub = $this->getMock(ServiceLocatorInterface::class);
