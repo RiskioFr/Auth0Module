@@ -31,13 +31,11 @@ class Auth0Options extends AbstractOptions
     protected $redirectUri;
 
     /**
-     * @param  string $account
-     * @return self
+     * @param string $account
      */
     public function setAccount($account)
     {
-        $this->account = $account;
-        return $this;
+        $this->account = (string) $account;
     }
 
     /**
@@ -61,13 +59,11 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
-     * @param  string $token
-     * @return self
+     * @param string $token
      */
     public function setToken($token)
     {
-        $this->token = $token;
-        return $this;
+        $this->token = (string) $token;
     }
 
     /**
@@ -79,13 +75,11 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
-     * @param  string $id
-     * @return self
+     * @param string $id
      */
     public function setClientId($id)
     {
-        $this->clientId = $id;
-        return $this;
+        $this->clientId = (string) $id;
     }
 
     /**
@@ -97,13 +91,11 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
-     * @param  string $secret
-     * @return self
+     * @param string $secret
      */
     public function setClientSecret($secret)
     {
-        $this->clientSecret = $secret;
-        return $this;
+        $this->clientSecret = (string) $secret;
     }
 
     /**
@@ -115,20 +107,18 @@ class Auth0Options extends AbstractOptions
     }
 
     /**
+     * @param string $uri
+     */
+    public function setRedirectUri($uri)
+    {
+        $this->redirectUri = (string) $uri;
+    }
+
+    /**
      * @return string
      */
     public function getRedirectUri()
     {
         return $this->redirectUri;
-    }
-
-    /**
-     * @param  string $uri
-     * @return self
-     */
-    public function setRedirectUri($uri)
-    {
-        $this->redirectUri = $uri;
-        return $this;
     }
 }

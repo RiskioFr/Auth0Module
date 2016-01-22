@@ -1,20 +1,14 @@
 <?php
 namespace Riskio\Auth0Module\Factory;
 
-use Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Riskio\Authentication\Auth0\Adapter;
 
-class AuthenticationAdapterFactory implements FactoryInterface
+class AuthenticationAdapterFactory
 {
-    /**
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @return Auth0Adapter
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke($serviceLocator)
     {
         $oauthProvider = $serviceLocator->get('Riskio\Auth0Module\OAuth2\Client\Provider');
 
-        return new Auth0Adapter($oauthProvider);
+        return new Adapter($oauthProvider);
     }
 }

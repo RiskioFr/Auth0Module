@@ -22,8 +22,9 @@
     ],
     "require": {
         "php": ">=5.5",
+        "auth0/auth0-php": "~3.0",
+        "riskio/zf-authentication-auth0": "~0.1",
         "riskio/authentication-module": "~0.1",
-        "riskio/auth0-sdk": "~0.1",
         "riskio/oauth2-auth0": "~0.1"
     },
     "require-dev": {

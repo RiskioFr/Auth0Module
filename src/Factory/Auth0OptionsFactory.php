@@ -2,21 +2,15 @@
 namespace Riskio\Auth0Module\Factory;
 
 use Riskio\Auth0Module\Options\Auth0Options;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
-class Auth0OptionsFactory implements FactoryInterface
+class Auth0OptionsFactory
 {
-    /**
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @return Auth0
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke($serviceLocator)
     {
         $config = $serviceLocator->get('Config');
 
-        if (isset($config['auth0'])) {
-            $sdkOptions = (array) $config['auth0'];
+        if (isset($config['auth0']) && is_array($config['auth0'])) {
+            $sdkOptions = $config['auth0'];
         } else {
             $sdkOptions = [];
         }

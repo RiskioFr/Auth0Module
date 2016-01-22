@@ -2,9 +2,9 @@
 namespace Riskio\Auth0ModuleTest\Factory;
 
 use League\OAuth2\Client\Provider\ProviderInterface;
-use Riskio\Auth0Module\Authentication\Adapter\Auth0Adapter;
+use Riskio\Authentication\Auth0\Adapter;
 use Riskio\Auth0Module\Factory\AuthenticationAdapterFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceManager;
 
 class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,24 +14,13 @@ class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAdapterInstance()
     {
         $anyProvider = $this->getMock(ProviderInterface::class);
-        $serviceManagerStub = $this->getConfiguredServiceManager([
-            ['Riskio\Auth0Module\OAuth2\Client\Provider', $anyProvider],
-        ]);
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('Riskio\Auth0Module\OAuth2\Client\Provider', $anyProvider);
 
         $factory = new AuthenticationAdapterFactory();
 
-        $service = $factory->createService($serviceManagerStub);
+        $service = $factory($serviceManager);
 
-        $this->assertInstanceOf(Auth0Adapter::class, $service);
-    }
-
-    private function getConfiguredServiceManager(array $returnValueMap)
-    {
-        $serviceManagerStub = $this->getMock(ServiceLocatorInterface::class);
-        $serviceManagerStub
-            ->method('get')
-            ->will($this->returnValueMap($returnValueMap));
-
-        return $serviceManagerStub;
+        $this->assertInstanceOf(Adapter::class, $service);
     }
 }
