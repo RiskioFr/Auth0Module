@@ -1,13 +1,14 @@
 <?php
 namespace Riskio\Auth0Module\Factory;
 
+use Interop\Container\ContainerInterface;
 use Riskio\Auth0Module\Options\Auth0Options;
 
 class Auth0OptionsFactory
 {
-    public function __invoke($serviceLocator)
+    public function __invoke(ContainerInterface $container) : Auth0Options
     {
-        $config = $serviceLocator->get('Config');
+        $config = $container->get('config');
 
         if (isset($config['auth0']) && is_array($config['auth0'])) {
             $sdkOptions = $config['auth0'];

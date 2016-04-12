@@ -33,9 +33,9 @@ class Auth0Options extends AbstractOptions
     /**
      * @param string $account
      */
-    public function setAccount($account)
+    public function setAccount(string $account)
     {
-        $this->account = (string) $account;
+        $this->account = $account;
     }
 
     /**
@@ -61,9 +61,9 @@ class Auth0Options extends AbstractOptions
     /**
      * @param string $token
      */
-    public function setToken($token)
+    public function setToken(string $token)
     {
-        $this->token = (string) $token;
+        $this->token = $token;
     }
 
     /**
@@ -93,9 +93,9 @@ class Auth0Options extends AbstractOptions
     /**
      * @param string $secret
      */
-    public function setClientSecret($secret)
+    public function setClientSecret(string $secret)
     {
-        $this->clientSecret = (string) $secret;
+        $this->clientSecret = $secret;
     }
 
     /**
@@ -109,9 +109,9 @@ class Auth0Options extends AbstractOptions
     /**
      * @param string $uri
      */
-    public function setRedirectUri($uri)
+    public function setRedirectUri(string $uri)
     {
-        $this->redirectUri = (string) $uri;
+        $this->redirectUri = $uri;
     }
 
     /**

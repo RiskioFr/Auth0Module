@@ -1,10 +1,10 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
+use Interop\Container\ContainerInterface;
 use League\OAuth2\Client\Provider\ProviderInterface;
 use Riskio\Authentication\Auth0\Adapter;
 use Riskio\Auth0Module\Factory\AuthenticationAdapterFactory;
-use Zend\ServiceManager\ServiceManager;
 
 class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,12 +14,12 @@ class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAdapterInstance()
     {
         $anyProvider = $this->getMock(ProviderInterface::class);
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('Riskio\Auth0Module\OAuth2\Client\Provider', $anyProvider);
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get('Riskio\Auth0Module\OAuth2\Client\Provider')->willReturn($anyProvider);
 
         $factory = new AuthenticationAdapterFactory();
 
-        $service = $factory($serviceManager);
+        $service = $factory($container->reveal());
 
         $this->assertInstanceOf(Adapter::class, $service);
     }

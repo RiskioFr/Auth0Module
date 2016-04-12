@@ -1,10 +1,10 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
+use Interop\Container\ContainerInterface;
 use League\OAuth2\Client\Provider\ProviderInterface;
 use Riskio\Auth0Module\Factory\OAuthProviderFactory;
 use Riskio\Auth0Module\Options\Auth0Options;
-use Zend\ServiceManager\ServiceManager;
 
 class OAuth0ProviderFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,12 +24,12 @@ class OAuth0ProviderFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('toArray')
             ->will($this->returnValue($options));
 
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService(Auth0Options::class, $auth0OptionsStub);
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get(Auth0Options::class)->willReturn($auth0OptionsStub);
 
         $factory = new OAuthProviderFactory();
 
-        $service = $factory($serviceManager);
+        $service = $factory($container->reveal());
 
         $this->assertInstanceOf(ProviderInterface::class, $service);
     }
