@@ -13,7 +13,7 @@ class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAdapterInstance()
     {
-        $anyProvider = $this->getMock(ProviderInterface::class);
+        $anyProvider = $this->createMock(ProviderInterface::class);
         $container = $this->prophesize(ContainerInterface::class);
         $container->get('Riskio\Auth0Module\OAuth2\Client\Provider')->willReturn($anyProvider);
 

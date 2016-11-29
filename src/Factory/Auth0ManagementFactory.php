@@ -1,17 +1,17 @@
 <?php
 namespace Riskio\Auth0Module\Factory;
 
-use Auth0\SDK\Auth0Api;
+use Auth0\SDK\API\Management;
 use Interop\Container\ContainerInterface;
 use Riskio\Auth0Module\Options\Auth0Options;
 
-class Auth0ApiFactory
+class Auth0ManagementFactory
 {
-    public function __invoke(ContainerInterface $container) : Auth0Api
+    public function __invoke(ContainerInterface $container) : Management
     {
         /* @var $options Auth0Options */
         $options = $container->get(Auth0Options::class);
 
-        return new Auth0Api($options->getToken(), $options->getDomain());
+        return new Management($options->getToken(), $options->getDomain());
     }
 }

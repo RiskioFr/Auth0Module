@@ -1,26 +1,26 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
-use Auth0\SDK\Auth0Api;
+use Auth0\SDK\API\Management;
 use Interop\Container\ContainerInterface;
-use Riskio\Auth0Module\Factory\Auth0ApiFactory;
+use Riskio\Auth0Module\Factory\Auth0ManagementFactory;
 use Riskio\Auth0Module\Options\Auth0Options;
 
-class Auth0ApiFactoryTest extends \PHPUnit_Framework_TestCase
+class Auth0ManagementFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAuth0ClientInstance()
     {
-        $anyOptions = $this->getMock(Auth0Options::class);
+        $anyOptions = $this->createMock(Auth0Options::class);
         $container = $this->prophesize(ContainerInterface::class);
         $container->get(Auth0Options::class)->willReturn($anyOptions);
 
-        $factory = new Auth0ApiFactory();
+        $factory = new Auth0ManagementFactory();
 
         $service = $factory($container->reveal());
 
-        $this->assertInstanceOf(Auth0Api::class, $service);
+        $this->assertInstanceOf(Management::class, $service);
     }
 }

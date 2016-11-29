@@ -19,7 +19,7 @@ class OAuth0ProviderFactoryTest extends \PHPUnit_Framework_TestCase
             'client_secret' => 'secret',
             'redirect_uri'  => 'http://localhost/callback.php',
         ];
-        $auth0OptionsStub = $this->getMock(Auth0Options::class);
+        $auth0OptionsStub = $this->createMock(Auth0Options::class);
         $auth0OptionsStub
             ->method('toArray')
             ->will($this->returnValue($options));
