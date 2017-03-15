@@ -14,12 +14,6 @@
             "email": "neeckeloo@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.packagist.com/riskiofr/"
-        }
-    ],
     "require": {
         "php": "^7.0",
         "auth0/auth0-php": "~4.0",
