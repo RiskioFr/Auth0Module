@@ -3,10 +3,11 @@ namespace Riskio\Auth0ModuleTest\Factory;
 
 use Interop\Container\ContainerInterface;
 use League\OAuth2\Client\Provider\ProviderInterface;
+use PHPUnit\Framework\TestCase;
 use Riskio\Authentication\Auth0\Adapter;
 use Riskio\Auth0Module\Factory\AuthenticationAdapterFactory;
 
-class AuthenticationAdapterFactoryTest extends \PHPUnit_Framework_TestCase
+class AuthenticationAdapterFactoryTest extends TestCase
 {
     /**
      * @test

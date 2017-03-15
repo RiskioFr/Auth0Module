@@ -2,10 +2,11 @@
 namespace Riskio\Auth0ModuleTest\Factory;
 
 use Interop\Container\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 use Riskio\Auth0Module\Factory\Auth0OptionsFactory;
 use Riskio\Auth0Module\Options\Auth0Options;
 
-class Auth0OptionsFactoryTest extends \PHPUnit_Framework_TestCase
+class Auth0OptionsFactoryTest extends TestCase
 {
     /**
      * @test
