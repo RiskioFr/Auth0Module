@@ -2,7 +2,7 @@
 namespace Riskio\Auth0ModuleTest\Factory;
 
 use Interop\Container\ContainerInterface;
-use League\OAuth2\Client\Provider\ProviderInterface;
+use League\OAuth2\Client\Provider\AbstractProvider;
 use PHPUnit\Framework\TestCase;
 use Riskio\Auth0Module\Factory\OAuthProviderFactory;
 use Riskio\Auth0Module\Options\Auth0Options;
@@ -32,6 +32,6 @@ class OAuth0ProviderFactoryTest extends TestCase
 
         $service = $factory($container->reveal());
 
-        $this->assertInstanceOf(ProviderInterface::class, $service);
+        $this->assertInstanceOf(AbstractProvider::class, $service);
     }
 }
