@@ -1,7 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Riskio\Auth0Module;
 
-class ConfigProvider
+final class ConfigProvider
 {
     public function __invoke() : array
     {

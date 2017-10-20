@@ -1,123 +1,78 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Riskio\Auth0Module\Options;
 
 use Zend\Stdlib\AbstractOptions;
 
-class Auth0Options extends AbstractOptions
+final class Auth0Options extends AbstractOptions
 {
-    /**
-     * @var string
-     */
-    protected $account;
+    private $account;
 
-    /**
-     * @var string
-     */
-    protected $token;
+    private $token;
 
-    /**
-     * @var string
-     */
-    protected $clientId;
+    private $clientId;
 
-    /**
-     * @var string
-     */
-    protected $clientSecret;
+    private $clientSecret;
 
-    /**
-     * @var string
-     */
-    protected $redirectUri;
+    private $redirectUri;
 
-    /**
-     * @param string $account
-     */
     public function setAccount(string $account)
     {
         $this->account = $account;
     }
 
-    /**
-     * @return string
-     */
-    public function getAccount()
+    public function getAccount() : string
     {
         return $this->account;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getDomain()
+    public function getDomain() : string
     {
         if (empty($this->account)) {
-            return null;
+            return '';
         }
 
         return $this->account . '.auth0.com';
     }
 
-    /**
-     * @param string $token
-     */
     public function setToken(string $token)
     {
         $this->token = $token;
     }
 
-    /**
-     * @return string
-     */
-    public function getToken()
+    public function getToken() : string
     {
         return $this->token;
     }
 
-    /**
-     * @param string $id
-     */
-    public function setClientId($id)
+    public function setClientId(string $id)
     {
-        $this->clientId = (string) $id;
+        $this->clientId = $id;
     }
 
-    /**
-     * @return string
-     */
-    public function getClientId()
+    public function getClientId() : string
     {
         return $this->clientId;
     }
 
-    /**
-     * @param string $secret
-     */
     public function setClientSecret(string $secret)
     {
         $this->clientSecret = $secret;
     }
 
-    /**
-     * @return string
-     */
-    public function getClientSecret()
+    public function getClientSecret() : string
     {
         return $this->clientSecret;
     }
 
-    /**
-     * @param string $uri
-     */
     public function setRedirectUri(string $uri)
     {
         $this->redirectUri = $uri;
     }
 
-    /**
-     * @return string
-     */
-    public function getRedirectUri()
+    public function getRedirectUri() : string
     {
         return $this->redirectUri;
     }

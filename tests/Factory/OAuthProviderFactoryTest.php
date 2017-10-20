@@ -14,19 +14,15 @@ class OAuth0ProviderFactoryTest extends TestCase
      */
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAuth0ProviderInstance()
     {
-        $options = [
-            'account'       => 'foo',
-            'client_id'     => 'id',
+        $auth0Options = new Auth0Options([
+            'account' => 'foo',
+            'client_id' => 'id',
             'client_secret' => 'secret',
-            'redirect_uri'  => 'http://localhost/callback.php',
-        ];
-        $auth0OptionsStub = $this->createMock(Auth0Options::class);
-        $auth0OptionsStub
-            ->method('toArray')
-            ->will($this->returnValue($options));
+            'redirect_uri' => 'http://localhost/callback.php',
+        ]);
 
         $container = $this->prophesize(ContainerInterface::class);
-        $container->get(Auth0Options::class)->willReturn($auth0OptionsStub);
+        $container->get(Auth0Options::class)->willReturn($auth0Options);
 
         $factory = new OAuthProviderFactory();
 

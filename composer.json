@@ -1,13 +1,13 @@
 {
     "name": "riskio/auth0-module",
-    "description": "Integrate Auth0 features",
+    "description": "Auth0 features integration into Zend Framework",
     "type": "library",
     "keywords": [
         "zf2",
         "authentication",
         "oauth"
     ],
-    "homepage": "https://github.com/riskio/Auth0Module",
+    "homepage": "https://github.com/riskio/auth0-module",
     "authors": [
         {
             "name": "Nicolas Eeckeloo",

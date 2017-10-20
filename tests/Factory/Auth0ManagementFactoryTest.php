@@ -14,9 +14,13 @@ class Auth0ManagementFactoryTest extends TestCase
      */
     public function createService_GivenServiceManagerThatContainsService_ShouldReturnAuth0ClientInstance()
     {
-        $anyOptions = $this->createMock(Auth0Options::class);
+        $auth0Options = new Auth0Options([
+            'token' => 'foo',
+            'account' => 'bar',
+        ]);
+
         $container = $this->prophesize(ContainerInterface::class);
-        $container->get(Auth0Options::class)->willReturn($anyOptions);
+        $container->get(Auth0Options::class)->willReturn($auth0Options);
 
         $factory = new Auth0ManagementFactory();
 

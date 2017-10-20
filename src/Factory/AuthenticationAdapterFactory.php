@@ -1,10 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Riskio\Auth0Module\Factory;
 
 use Interop\Container\ContainerInterface;
 use Riskio\Authentication\Auth0\Adapter;
 
-class AuthenticationAdapterFactory
+final class AuthenticationAdapterFactory
 {
     public function __invoke(ContainerInterface $container) : Adapter
     {
