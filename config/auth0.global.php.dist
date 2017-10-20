@@ -1,0 +1,10 @@
+<?php
+return [
+    'auth0' => [
+        'account' => null,
+        'token' => null,
+        'client_id' => null,
+        'client_secret' => null,
+        'redirect_uri' => null,
+    ],
+];
