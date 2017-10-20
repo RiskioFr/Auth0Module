@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Riskio\Auth0Module\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Riskio\Auth0Module\Options\Auth0Options;
 
 final class Auth0OptionsFactory

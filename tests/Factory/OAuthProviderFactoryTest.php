@@ -1,7 +1,7 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use PHPUnit\Framework\TestCase;
 use Riskio\Auth0Module\Factory\OAuthProviderFactory;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Riskio\Auth0Module\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Riskio\Authentication\Auth0\Adapter;
 
 final class AuthenticationAdapterFactory

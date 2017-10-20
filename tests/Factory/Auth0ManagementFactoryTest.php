@@ -2,7 +2,7 @@
 namespace Riskio\Auth0ModuleTest\Factory;
 
 use Auth0\SDK\API\Management;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
 use Riskio\Auth0Module\Factory\Auth0ManagementFactory;
 use Riskio\Auth0Module\Options\Auth0Options;
