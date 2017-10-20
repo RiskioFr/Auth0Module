@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^7.0",
-        "auth0/auth0-php": "~4.0",
+        "auth0/auth0-php": "^5.0.5",
         "container-interop/container-interop": "^1.0",
         "riskio/zf-authentication-auth0": "^1.0",
         "zendframework/zend-stdlib": "~3.1"
