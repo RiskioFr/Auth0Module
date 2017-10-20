@@ -2,6 +2,7 @@
     "name": "riskio/auth0-module",
     "description": "Auth0 features integration into Zend Framework",
     "type": "library",
+    "license": "MIT",
     "keywords": [
         "zf2",
         "authentication",
