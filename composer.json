@@ -34,5 +34,11 @@
         "psr-4": {
             "Riskio\\Auth0ModuleTest\\": "tests/"
         }
+    },
+    "extra": {
+        "zf": {
+            "config-provider": "Riskio\\Auth0Module\\ConfigProvider",
+            "module": "Riskio\\Auth0Module\\Module"
+        }
     }
 }
