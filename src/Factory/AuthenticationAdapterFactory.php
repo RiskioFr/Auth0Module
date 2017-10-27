@@ -6,12 +6,13 @@ namespace Riskio\Auth0Module\Factory;
 
 use Psr\Container\ContainerInterface;
 use Riskio\Authentication\Auth0\Adapter;
+use Riskio\OAuth2\Client\Provider\Auth0 as OAuthProvider;
 
 final class AuthenticationAdapterFactory
 {
     public function __invoke(ContainerInterface $container) : Adapter
     {
-        $oauthProvider = $container->get('Riskio\Auth0Module\OAuth2\Client\Provider');
+        $oauthProvider = $container->get(OAuthProvider::class);
 
         return new Adapter($oauthProvider);
     }

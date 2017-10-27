@@ -1,7 +1,7 @@
 <?php
 namespace Riskio\Auth0ModuleTest\Factory;
 
-use Auth0\SDK\API\Management;
+use Auth0\SDK\API\Management as Auth0Management;
 use Psr\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
 use Riskio\Auth0Module\Factory\Auth0ManagementFactory;
@@ -26,6 +26,6 @@ class Auth0ManagementFactoryTest extends TestCase
 
         $service = $factory($container->reveal());
 
-        $this->assertInstanceOf(Management::class, $service);
+        $this->assertInstanceOf(Auth0Management::class, $service);
     }
 }

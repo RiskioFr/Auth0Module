@@ -1,18 +1,22 @@
 <?php
 
+use Auth0\SDK\API\Management as Auth0Management;
 use Riskio\Auth0Module\Factory;
+use Riskio\Auth0Module\Options\Auth0Options;
+use Riskio\Authentication\Auth0\Adapter as Auth0AuthenticationAdapter;
+use Riskio\OAuth2\Client\Provider\Auth0 as OAuthProvider;
 
 return [
     'authentication' => [
-        'adapter' => 'Riskio\Auth0Module\AuthenticationAdapter',
+        'adapter' => Auth0AuthenticationAdapter::class,
     ],
 
     'service_manager' => [
         'factories' => [
-            'Riskio\Auth0Module\AuthenticationAdapter' => Factory\AuthenticationAdapterFactory::class,
-            'Riskio\Auth0Module\Auth0Management' => Factory\Auth0ManagementFactory::class,
-            'Riskio\Auth0Module\OAuth2\Client\Provider' => Factory\OAuthProviderFactory::class,
-            'Riskio\Auth0Module\Options\Auth0Options' => Factory\Auth0OptionsFactory::class,
+            Auth0AuthenticationAdapter::class => Factory\AuthenticationAdapterFactory::class,
+            Auth0Management::class => Factory\Auth0ManagementFactory::class,
+            OAuthProvider::class => Factory\OAuthProviderFactory::class,
+            Auth0Options::class => Factory\Auth0OptionsFactory::class,
         ],
     ],
 ];
