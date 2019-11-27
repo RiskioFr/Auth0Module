@@ -13,7 +13,7 @@ Module to integrate Auth0 with Zend Framework projects.
 * PHP 7.0+
 * [auth0/auth0-php ^5.0.5](https://github.com/auth0/auth0-php)
 * [psr/container ^1.0](https://github.com/container-interop/container-interop)
-* [riskio/zf-authentication-auth0 ^1.0](https://github.com/riskio/zf-authentication-auth0)
+* [riskio/zf-authentication-auth0 ^1.0](https://github.com/RiskioFr/zf-authentication-auth0)
 * [zendframework/zend-stdlib ^3.1](https://github.com/zendframework/zend-stdlib)
 
 ## Installation
